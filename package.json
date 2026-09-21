@@ -8,9 +8,11 @@
     "start": "next start",
     "lint": "next lint",
     "package:demo": "powershell -ExecutionPolicy Bypass -File scripts/package-demo.ps1",
-    "package:demo:lite": "powershell -ExecutionPolicy Bypass -File scripts/package-demo.ps1 -SkipNode"
+    "package:demo:lite": "powershell -ExecutionPolicy Bypass -File scripts/package-demo.ps1 -SkipNode",
+    "db:seed": "node scripts/generate-seed-sql.mjs"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.49.0",
     "next": "^15.5.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"

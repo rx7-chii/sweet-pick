@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getTrends, isValidChannel } from "@/lib/mock-data";
+import { isValidChannel } from "@/lib/channel";
+import { getTrends } from "@/lib/data/products";
 import { toProductSummary } from "@/lib/search";
 
 export async function GET(request: NextRequest) {
@@ -19,7 +20,7 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const items = getTrends(channel, limit).map(toProductSummary);
+  const items = (await getTrends(channel, limit)).map(toProductSummary);
 
   return NextResponse.json({ channel, items });
 }

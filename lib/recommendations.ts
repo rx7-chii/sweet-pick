@@ -1,4 +1,4 @@
-import { searchProducts } from "./mock-data";
+import { searchProducts } from "./data/products";
 import type { Channel, ProductDetail } from "./types";
 
 export type RecommendationsResult = {
@@ -6,12 +6,12 @@ export type RecommendationsResult = {
   basedOnQueries: string[];
 };
 
-/** 過去の検索キーワードからおすすめ商品を集約（サーバー非依存・mock 用） */
-export function getRecommendationsFromHistory(
+/** 過去の検索キーワードからおすすめ商品を集約 */
+export async function getRecommendationsFromHistory(
   queries: string[],
   channel: Channel,
   limit = 5
-): RecommendationsResult {
+): Promise<RecommendationsResult> {
   const seen = new Set<string>();
   const merged: ProductDetail[] = [];
   const basedOnQueries: string[] = [];
@@ -20,7 +20,7 @@ export function getRecommendationsFromHistory(
     const trimmed = query.trim();
     if (!trimmed) continue;
 
-    const { trends } = searchProducts(trimmed, channel);
+    const { trends } = await searchProducts(trimmed, channel);
     if (trends.length === 0) continue;
 
     basedOnQueries.push(trimmed);

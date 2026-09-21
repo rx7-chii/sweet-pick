@@ -5,7 +5,7 @@ import { ProductBadges } from "@/components/product/ProductBadges";
 import { Header } from "@/components/layout/Header";
 import { PageFooterNav } from "@/components/layout/PageFooterNav";
 import { getFallbackImageUrl } from "@/lib/image-config";
-import { getProductById } from "@/lib/mock-data";
+import { getProductById } from "@/lib/data/products";
 
 type ProductPageProps = {
   params: Promise<{ id: string }>;
@@ -13,7 +13,7 @@ type ProductPageProps = {
 
 export default async function ProductPage({ params }: ProductPageProps) {
   const { id } = await params;
-  const product = getProductById(id);
+  const product = await getProductById(id);
 
   if (!product) {
     notFound();

@@ -236,6 +236,4 @@ export function getSponsor(channel: Channel): ProductDetail | null {
   );
 }
 
-export function isValidChannel(value: string | null): value is Channel {
-  return value === "convenience" || value === "department";
-}
+export { isValidChannel } from "./channel";

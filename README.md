@@ -2,9 +2,19 @@
 
 今のトレンドお菓子が、3タップでわかる — モバイルファースト PWA（MVP / モックデータ版）
 
+## データソース
+
+| モード | 条件 | 商品数 |
+|--------|------|--------|
+| **モック** | Supabase 環境変数なし | 13 件 |
+| **本番 DB** | Supabase 接続済み | 60 件 |
+
+Supabase セットアップ: [docs/supabase-setup.md](docs/supabase-setup.md)
+
 ## 本番デプロイ（Vercel）
 
-GitHub リポジトリ: https://github.com/rx7-chii/sweet-pick
+GitHub リポジトリ: https://github.com/rx7-chii/sweet-pick  
+本番 URL: https://sweet-pick.vercel.app/
 
 ### ワンクリックでインポート
 

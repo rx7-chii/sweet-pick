@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { isValidChannel, searchProducts } from "@/lib/mock-data";
+import { isValidChannel } from "@/lib/channel";
+import { searchProducts } from "@/lib/data/products";
 import { toProductSummary } from "@/lib/search";
 
 export async function GET(request: NextRequest) {
@@ -30,7 +31,7 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const { trends, newReleases, sponsor } = searchProducts(q, channel);
+  const { trends, newReleases, sponsor } = await searchProducts(q, channel);
 
   if (trends.length === 0) {
     return NextResponse.json({

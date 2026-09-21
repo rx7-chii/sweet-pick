@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { isValidChannel } from "@/lib/mock-data";
+import { isValidChannel } from "@/lib/channel";
 import { getRecommendationsFromHistory } from "@/lib/recommendations";
 import { toProductSummary } from "@/lib/search";
 
@@ -34,7 +34,7 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const { items, basedOnQueries } = getRecommendationsFromHistory(
+  const { items, basedOnQueries } = await getRecommendationsFromHistory(
     queries,
     channel,
     5

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getSponsor, isValidChannel } from "@/lib/mock-data";
+import { isValidChannel } from "@/lib/channel";
+import { getSponsor } from "@/lib/data/products";
 import { toProductSummary } from "@/lib/search";
 
 export async function GET(request: NextRequest) {
@@ -17,7 +18,7 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const sponsor = getSponsor(channel);
+  const sponsor = await getSponsor(channel);
 
   return NextResponse.json({
     channel,

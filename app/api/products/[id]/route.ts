@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getFallbackImageUrl, resolveProductImageUrl } from "@/lib/image-config";
-import { getProductById } from "@/lib/mock-data";
+import { getProductById } from "@/lib/data/products";
 
 type RouteContext = { params: Promise<{ id: string }> };
 
 export async function GET(_request: NextRequest, context: RouteContext) {
   const { id } = await context.params;
-  const product = getProductById(id);
+  const product = await getProductById(id);
 
   if (!product) {
     return NextResponse.json(
