@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SWEET PICK — 今のトレンドお菓子が、3タップでわかる</title>
+  <meta name="description" content="お菓子専用のトレンド検索。ログイン不要・完全無料。SNSを探す30分を、検索3秒に。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --pink: #db2777;
+      --pink-dark: #be185d;
+      --pink-light: #fdf2f8;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Noto Sans JP", "Segoe UI", sans-serif;
+      color: var(--text);
+      background: #fff;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+    /* Header */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #fce7f3;
+    }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px; max-width: 1080px; margin: 0 auto; padding: 0 20px;
+    }
+    .logo { font-size: 1.25rem; font-weight: 800; color: var(--pink-dark); }
+    .header-cta {
+      background: var(--pink);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 10px 20px;
+      border-radius: 999px;
+      transition: transform 0.15s, background 0.15s;
+    }
+    .header-cta:hover { background: var(--pink-dark); transform: translateY(-1px); }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(160deg, #fff5f7 0%, #ffe4ec 40%, #fff 100%);
+      padding: 56px 0 72px;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    @media (max-width: 768px) {
+      .hero-grid { grid-template-columns: 1fr; text-align: center; }
+    }
+    .hero-badge {
+      display: inline-block;
+      background: #fff;
+      border: 1px solid #fbcfe8;
+      color: var(--pink);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      color: var(--pink-dark);
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .hero-lead {
+      font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 8px;
+    }
+    .hero-hook { font-size: 1rem; color: var(--pink); font-weight: 700; margin-bottom: 24px; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+    @media (max-width: 768px) { .hero-tags { justify-content: center; } }
+    .hero-tags span {
+      background: #fff;
+      border: 1px solid #fbcfe8;
+      color: #9d174d;
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: 999px;
+    }
+    .hero-buttons { display: flex; flex-wrap: wrap; gap: 12px; }
+    @media (max-width: 768px) { .hero-buttons { justify-content: center; } }
+    .btn-primary {
+      background: var(--pink);
+      color: #fff;
+      font-weight: 700;
+      padding: 14px 28px;
+      border-radius: 999px;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.15s;
+    }
+    .btn-primary:hover { background: var(--pink-dark); transform: translateY(-2px); }
+    .btn-secondary {
+      background: #fff;
+      color: var(--pink-dark);
+      font-weight: 700;
+      padding: 14px 28px;
+      border-radius: 999px;
+      font-size: 1rem;
+      border: 2px solid #fbcfe8;
+      cursor: pointer;
+      transition: border-color 0.15s, transform 0.15s;
+    }
+    .btn-secondary:hover { border-color: var(--pink); transform: translateY(-2px); }
+
+    /* Phone frame */
+    .phone {
+      width: min(280px, 100%);
+      aspect-ratio: 390 / 844;
+      border-radius: 32px;
+      border: 6px solid #1f2937;
+      box-shadow: 0 24px 48px rgba(190, 24, 93, 0.18);
+      overflow: hidden;
+      background: #fff;
+      margin: 0 auto;
+      position: relative;
+    }
+    .phone img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    /* Demo video section */
+    .demo-section {
+      padding: 72px 0;
+      background: #fafafa;
+    }
+    .section-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--pink);
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 800;
+      color: var(--pink-dark);
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    .section-desc {
+      text-align: center;
+      color: var(--muted);
+      max-width: 560px;
+      margin: 0 auto 40px;
+    }
+    .demo-player {
+      max-width: 920px;
+      margin: 0 auto;
+      background: #1f2937;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    }
+    .demo-player-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background: #111827;
+      color: #e5e7eb;
+      font-size: 0.85rem;
+    }
+    .demo-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .demo-dot.r { background: #ef4444; }
+    .demo-dot.y { background: #eab308; }
+    .demo-dot.g { background: #22c55e; }
+    .demo-player-body {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 0;
+      min-height: 420px;
+    }
+    @media (max-width: 768px) {
+      .demo-player-body { grid-template-columns: 1fr; }
+    }
+    .demo-screen-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      background: linear-gradient(135deg, #374151, #1f2937);
+    }
+    .demo-screen-wrap .phone { width: 240px; }
+    .demo-slide {
+      position: absolute; inset: 0;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    .demo-slide.active { opacity: 1; }
+    .demo-side {
+      background: #fff;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .demo-step-num {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--pink);
+      margin-bottom: 8px;
+    }
+    .demo-step-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--pink-dark);
+      margin-bottom: 12px;
+      line-height: 1.35;
+    }
+    .demo-step-desc { color: var(--muted); font-size: 0.95rem; margin-bottom: 24px; }
+    .demo-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: auto;
+    }
+    .demo-play {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--pink);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .demo-play:hover { background: var(--pink-dark); }
+    .demo-progress {
+      flex: 1;
+      display: flex;
+      gap: 6px;
+    }
+    .demo-progress button {
+      flex: 1;
+      height: 4px;
+      border: none;
+      border-radius: 2px;
+      background: #e5e7eb;
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.2s;
+    }
+    .demo-progress button.active { background: var(--pink); }
+    .demo-progress button.done { background: #f9a8d4; }
+
+    /* Features */
+    .features { padding: 72px 0; }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 40px;
+    }
+    @media (max-width: 768px) { .feature-grid { grid-template-columns: 1fr; } }
+    .feature-card {
+      background: var(--pink-light);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      text-align: center;
+    }
+    .feature-icon { font-size: 2rem; margin-bottom: 12px; }
+    .feature-card h3 { font-size: 1.1rem; font-weight: 800; color: var(--pink-dark); margin-bottom: 8px; }
+    .feature-card p { font-size: 0.9rem; color: var(--muted); }
+
+    /* Screenshots gallery */
+    .gallery { padding: 72px 0; background: #fafafa; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 40px;
+    }
+    @media (max-width: 900px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 520px) { .gallery-grid { grid-template-columns: 1fr; } }
+    .gallery-item { text-align: center; }
+    .gallery-item .phone { width: 200px; }
+    .gallery-item p { margin-top: 12px; font-weight: 700; color: #374151; font-size: 0.95rem; }
+
+    /* CTA */
+    .cta {
+      padding: 80px 0;
+      background: linear-gradient(135deg, #831843, #be185d);
+      color: #fff;
+      text-align: center;
+    }
+    .cta h2 { font-size: clamp(1.75rem, 4vw, 2.25rem); font-weight: 800; margin-bottom: 16px; }
+    .cta p { font-size: 1.05rem; opacity: 0.95; margin-bottom: 32px; max-width: 520px; margin-left: auto; margin-right: auto; }
+    .cta .btn-primary { background: #fff; color: var(--pink-dark); font-size: 1.1rem; padding: 16px 36px; }
+    .cta .btn-primary:hover { background: #fdf2f8; }
+
+    footer {
+      padding: 24px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--muted);
+      border-top: 1px solid #f3f4f6;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <span class="logo">SWEET PICK</span>
+      <a href="/" class="header-cta">今すぐ試す</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="hero-badge">お菓子好きのためのアプリ</span>
+        <h1>SWEET PICK</h1>
+        <p class="hero-lead">今のトレンドお菓子が、<br>3タップでわかる。</p>
+        <p class="hero-hook">SNSを探す30分を、検索3秒に。</p>
+        <div class="hero-tags">
+          <span>完全無料</span>
+          <span>ログイン不要</span>
+          <span>インストール不要</span>
+        </div>
+        <div class="hero-buttons">
+          <a href="/" class="btn-primary">アプリを開く</a>
+          <a href="#demo" class="btn-secondary">デモを見る</a>
+        </div>
+      </div>
+      <div class="phone">
+        <img src="assets/01-home.png" alt="SWEET PICK ホーム画面" />
+      </div>
+    </div>
+  </section>
+
+  <section class="demo-section" id="demo">
+    <div class="container">
+      <p class="section-label">デモ</p>
+      <h2 class="section-title">30秒でわかる SWEET PICK</h2>
+      <p class="section-desc">実際の画面イメージで、検索からお気に入り保存までの流れをご覧ください。</p>
+
+      <div class="demo-player" id="demoPlayer">
+        <div class="demo-player-bar">
+          <span class="demo-dot r"></span>
+          <span class="demo-dot y"></span>
+          <span class="demo-dot g"></span>
+          <span>SWEET PICK デモ</span>
+        </div>
+        <div class="demo-player-body">
+          <div class="demo-screen-wrap">
+            <div class="phone" id="demoPhone">
+              <!-- slides injected by JS -->
+            </div>
+          </div>
+          <div class="demo-side">
+            <p class="demo-step-num" id="demoStepNum">STEP 1 / 5</p>
+            <h3 class="demo-step-title" id="demoStepTitle">トップを開く</h3>
+            <p class="demo-step-desc" id="demoStepDesc">今のトレンド TOP3 がすぐ確認できます。検索バーからキーワード入力も可能。</p>
+            <div class="demo-controls">
+              <button class="demo-play" id="demoPlayBtn" aria-label="再生・一時停止">▶</button>
+              <div class="demo-progress" id="demoProgress"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="container">
+      <p class="section-label">特徴</p>
+      <h2 class="section-title">選ばれる理由</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🍬</div>
+          <h3>お菓子特化</h3>
+          <p>飲食店アプリではなく、お菓子だけに集中した情報設計。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>3タップで完結</h3>
+          <p>検索 → 結果 → 詳細。移動中の片手操作にも最適。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔓</div>
+          <h3>ログイン不要</h3>
+          <p>面倒な登録なし。開いたらすぐ使えます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery">
+    <div class="container">
+      <p class="section-label">画面紹介</p>
+      <h2 class="section-title">主な画面</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <div class="phone"><img src="assets/02-search.png" alt="検索結果" loading="lazy" /></div>
+          <p>キーワード検索</p>
+        </div>
+        <div class="gallery-item">
+          <div class="phone"><img src="assets/03-detail.png" alt="商品詳細" loading="lazy" /></div>
+          <p>商品詳細</p>
+        </div>
+        <div class="gallery-item">
+          <div class="phone"><img src="assets/04-favorites.png" alt="お気に入り" loading="lazy" /></div>
+          <p>お気に入り一覧</p>
+        </div>
+        <div class="gallery-item">
+          <div class="phone"><img src="assets/05-home-recommend.png" alt="おすすめ" loading="lazy" /></div>
+          <p>あなたへのおすすめ</p>
+        </div>
+        <div class="gallery-item">
+          <div class="phone"><img src="assets/06-department.png" alt="デパ地下" loading="lazy" /></div>
+          <p>デパ地下モード</p>
+        </div>
+        <div class="gallery-item">
+          <div class="phone"><img src="assets/01-home.png" alt="ホーム" loading="lazy" /></div>
+          <p>トレンド TOP3</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <h2>今すぐ、トレンドお菓子を<br>チェックしよう。</h2>
+      <p>スマホブラウザからアクセス。インストールもログインも不要です。</p>
+      <a href="/" class="btn-primary">SWEET PICK を開く</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>SWEET PICK — スイートピック</p>
+  </footer>
+
+  <script>
+    const DEMO_STEPS = [
+      {
+        image: "assets/01-home.png",
+        title: "トップを開く",
+        desc: "今のトレンド TOP3 がすぐ確認できます。検索バーからキーワード入力も可能。",
+      },
+      {
+        image: "assets/02-search.png",
+        title: "「ポテチ」と検索",
+        desc: "3秒以内に結果表示。トレンド TOP3・新作・期間限定バッジがひと目でわかります。",
+      },
+      {
+        image: "assets/03-detail.png",
+        title: "商品詳細を確認",
+        desc: "画像・説明・購入場所を1画面で。期間限定・店舗限定もバッジ表示。",
+      },
+      {
+        image: "assets/04-favorites.png",
+        title: "お気に入りに保存",
+        desc: "ログイン不要で端末内に保存。あとからすぐ見返せます。",
+      },
+      {
+        image: "assets/06-department.png",
+        title: "モード切替",
+        desc: "コンビニとデパ地下を切り替え。シーンに合ったお菓子が見つかります。",
+      },
+    ];
+
+    const phone = document.getElementById("demoPhone");
+    const stepNum = document.getElementById("demoStepNum");
+    const stepTitle = document.getElementById("demoStepTitle");
+    const stepDesc = document.getElementById("demoStepDesc");
+    const progressEl = document.getElementById("demoProgress");
+    const playBtn = document.getElementById("demoPlayBtn");
+
+    let current = 0;
+    let playing = true;
+    let timer = null;
+    const INTERVAL = 3500;
+
+    DEMO_STEPS.forEach((step, i) => {
+      const slide = document.createElement("div");
+      slide.className = "demo-slide" + (i === 0 ? " active" : "");
+      slide.innerHTML = '<img src="' + step.image + '" alt="' + step.title + '" />';
+      phone.appendChild(slide);
+
+      const dot = document.createElement("button");
+      dot.type = "button";
+      dot.setAttribute("aria-label", "ステップ " + (i + 1));
+      dot.addEventListener("click", () => goTo(i, true));
+      progressEl.appendChild(dot);
+    });
+
+    const slides = phone.querySelectorAll(".demo-slide");
+    const dots = progressEl.querySelectorAll("button");
+
+    function updateUI() {
+      slides.forEach((s, i) => s.classList.toggle("active", i === current));
+      dots.forEach((d, i) => {
+        d.classList.toggle("active", i === current);
+        d.classList.toggle("done", i < current);
+      });
+      stepNum.textContent = "STEP " + (current + 1) + " / " + DEMO_STEPS.length;
+      stepTitle.textContent = DEMO_STEPS[current].title;
+      stepDesc.textContent = DEMO_STEPS[current].desc;
+    }
+
+    function goTo(index, pause) {
+      current = index;
+      if (current >= DEMO_STEPS.length) current = 0;
+      if (current < 0) current = DEMO_STEPS.length - 1;
+      updateUI();
+      if (pause) stopAuto();
+    }
+
+    function next() {
+      goTo(current + 1 >= DEMO_STEPS.length ? 0 : current + 1, false);
+    }
+
+    function startAuto() {
+      playing = true;
+      playBtn.textContent = "⏸";
+      clearInterval(timer);
+      timer = setInterval(next, INTERVAL);
+    }
+
+    function stopAuto() {
+      playing = false;
+      playBtn.textContent = "▶";
+      clearInterval(timer);
+    }
+
+    playBtn.addEventListener("click", () => {
+      if (playing) stopAuto();
+      else startAuto();
+    });
+
+    updateUI();
+    startAuto();
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting && !playing) startAuto();
+          if (!e.isIntersecting && playing) stopAuto();
+        });
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(document.getElementById("demoPlayer"));
+  </script>
+</body>
+</html>

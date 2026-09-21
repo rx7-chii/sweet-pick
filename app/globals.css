@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+[data-channel="convenience"] {
+  --color-bg: #ffffff;
+  --color-bg-sub: #f9fafb;
+  --color-text: #333333;
+  --color-text-sub: #6b7280;
+  --color-accent: #3b82f6;
+  --color-border: #e5e7eb;
+  --font-heading: "Inter", "Noto Sans JP", sans-serif;
+  --font-body: "Inter", "Noto Sans JP", sans-serif;
+  --radius-card: 8px;
+  --spacing-section: 16px;
+}
+
+[data-channel="department"] {
+  --color-bg: #faf9f7;
+  --color-bg-sub: #f5f0eb;
+  --color-text: #2c2c2c;
+  --color-text-sub: #6b5b4f;
+  --color-accent: #b8860b;
+  --color-border: #e8dfd0;
+  --font-heading: "Noto Serif JP", "Georgia", serif;
+  --font-body: "Noto Sans JP", sans-serif;
+  --radius-card: 4px;
+  --spacing-section: 24px;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.bg-theme {
+  background-color: var(--color-bg);
+}
+
+.bg-theme-sub {
+  background-color: var(--color-bg-sub);
+}
+
+.text-theme-sub {
+  color: var(--color-text-sub);
+}
+
+.border-theme {
+  border-color: var(--color-border);
+}
+
+.text-accent {
+  color: var(--color-accent);
+}
+
+.bg-accent {
+  background-color: var(--color-accent);
+}
+
+.rounded-card {
+  border-radius: var(--radius-card);
+}
+
+/* スマホ1画面に収まりやすい商品画像サイズ */
+.product-hero-image {
+  width: 100%;
+  height: clamp(7.5rem, 26dvh, 10rem);
+}
+
+.product-list-image {
+  width: 100%;
+  height: clamp(5rem, 18dvh, 7rem);
+}
+
+@media (min-width: 640px) {
+  .product-hero-image {
+    height: clamp(10rem, 32dvh, 14rem);
+  }
+
+  .product-list-image {
+    height: clamp(6rem, 20dvh, 8rem);
+  }
+}

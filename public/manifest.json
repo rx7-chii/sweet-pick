@@ -1,0 +1,19 @@
+{
+  "name": "SWEET PICK",
+  "short_name": "SWEET PICK",
+  "description": "今のトレンドお菓子をサッと検索",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "lang": "ja",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
